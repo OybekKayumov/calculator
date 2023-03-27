@@ -9,6 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: whitesmoke;
   background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
 }
 
@@ -26,7 +27,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  border-radius:  10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
+  max-width: 100%;
 }
 
 .calculator-display h1 {
@@ -58,8 +60,8 @@ body {
 /* buttons */
 .calculator-buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
   padding: 10px;
 }
 
@@ -68,9 +70,9 @@ button {
   font-size: 20px;
   font-weight: 100;
   border: none;
+  background: rgb(200, 200, 200);
   border-radius: 5px;
   cursor: pointer;
-  background: rgb(199, 199, 199);
 }
 
 button:hover {
@@ -89,7 +91,6 @@ button:focus {
   background: grey;
   color: white;
   font-size: 30px;
-
 }
 
 .clear {
@@ -107,6 +108,7 @@ button:focus {
   background: rgb(13, 206, 87);
 }
 
+/* madia */
 @media screen and (max-width: 600px) {
   .calculator {
     width: 95%;

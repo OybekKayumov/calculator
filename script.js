@@ -4,12 +4,12 @@ const clearBtn = document.getElementById('clear-btn');
 
 let firstValue = 0;
 let operatorValue = '';
-let awaitNextValue = false;
+let awaitingNextValue = false;
 
 function sendNumberValue(number) {
-  if (awaitNextValue) {
+  if (awaitingNextValue) {
     calculatorDisplay.textContent = number;
-    awaitNextValue = false;    
+    awaitingNextValue = false;    
   } else {
     const displayValue = calculatorDisplay.textContent;
 
@@ -18,7 +18,7 @@ function sendNumberValue(number) {
 }
 
 function addDecimal() {
-  if (awaitNextValue) return;
+  if (awaitingNextValue) return;
 
   if (!calculatorDisplay.textContent.includes('.')) {
     calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
@@ -36,7 +36,7 @@ const calculate = {
 function useOperator(operator) {
   const currValue = Number(calculatorDisplay.textContent);
 
-  if (operatorValue && awaitNextValue) {
+  if (operatorValue && awaitingNextValue) {
     operatorValue = operator;
     return;
   }
@@ -49,24 +49,24 @@ function useOperator(operator) {
     firstValue = calculation;
   }
 
-  awaitNextValue = true;
+  awaitingNextValue = true;
   operatorValue = operator;
 }
 
 inputBtns.forEach((inputBtn) => {
-  if (inputBtn.cl.length === 0) {
-    inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value))
+  if (inputBtn.classList.length === 0) {
+    inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value));
   } else if (inputBtn.classList.contains('operator')) {
-    inputBtn.addEventListener('click', () => useOperator(inputBtn.value))
+    inputBtn.addEventListener('click', () => useOperator(inputBtn.value));
   } else if (inputBtn.classList.contains('decimal')) {
-    inputBtn.addEventListener('click', () => addDecimal())
+    inputBtn.addEventListener('click', () => addDecimal());
   } 
-})
+});
 
 function resetAll() {
   firstValue = 0;
   operatorValue = '';
-  awaitNextValue = false;
+  awaitingNextValue = false;
   calculatorDisplay.textContent = '0';  
 }
 
