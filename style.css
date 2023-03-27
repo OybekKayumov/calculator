@@ -14,7 +14,7 @@ body {
 
 .calculator {
   background: white;
-  min-width: 400px;
+  width: 400px;
   border-radius: 12px;
   box-shadow: 0 5px 30px -5px rgba(0, 0, 0, 0.6);
 }
@@ -35,4 +35,22 @@ body {
   font-size: 45px;
   font-family: 'Lucida Console', sans-serif;
   font-weight: 100;
+  overflow-x: auto;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
