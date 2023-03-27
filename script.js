@@ -18,18 +18,35 @@ function sendNumberValue(number) {
 }
 
 function addDecimal() {
+  if (awaitNextValue) return;
+
   if (!calculatorDisplay.textContent.includes('.')) {
     calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
   }
 }
 
+const calculate = {
+  '/': (firstNumber, secondNumber) => firstNumber / secondNumber,
+  '*': (firstNumber, secondNumber) => firstNumber * secondNumber,
+  '+': (firstNumber, secondNumber) => firstNumber + secondNumber,
+  '-': (firstNumber, secondNumber) => firstNumber - secondNumber,
+  '=': (firstNumber, secondNumber) => secondNumber,
+}
+
 function useOperator(operator) {
   const currValue = Number(calculatorDisplay.textContent);
+
+  if (operatorValue && awaitNextValue) {
+    operatorValue = operator;
+    return;
+  }
 
   if (!firstValue) {
     firstValue = currValue;
   } else {
-
+    const calculation = calculate[operatorValue](firstValue, currValue);
+    calculatorDisplay.textContent = calculation;
+    firstValue = calculation;
   }
 
   awaitNextValue = true;
