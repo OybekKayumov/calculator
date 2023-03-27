@@ -8,12 +8,24 @@ function sendNumberValue(number) {
   calculatorDisplay.textContent = displayValue === '0' ? number : displayValue + number;
 }
 
+function addDecimal() {
+  if (!calculatorDisplay.textContent.includes('.')) {
+    calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
+  }
+}
+
 inputBtns.forEach((inputBtn) => {
   if (inputBtn.cl.length === 0) {
     inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value))
   } else if (inputBtn.classList.contains('operator')) {
     inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value))
   } else if (inputBtn.classList.contains('decimal')) {
-    inputBtn.addEventListener('click', () => sendNumberValue(inputBtn.value))
+    inputBtn.addEventListener('click', () => addDecimal())
   } 
 })
+
+function resetAll() {
+  calculatorDisplay.textContent = '0';  
+}
+
+clearBtn.addEventListener('click', resetAll);
